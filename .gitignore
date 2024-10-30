@@ -1,3 +1,13 @@
+# RV Additions
+
+# Code::Blocks .layout file
+*.layout 
+
+
+
+# Default .gitignore
+
+
 # Prerequisites
 *.d
 
