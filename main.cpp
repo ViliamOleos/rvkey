@@ -3,13 +3,10 @@
 
 using namespace std;
 
-bool loop = true;
-
 LRESULT CALLBACK TST_BTNhookproc(int ncode, WPARAM wParam, LPARAM lParam) {
     if (wParam == WM_KEYDOWN && lParam != NULL)
     {
-        std::cout<<"keydown|";
-        loop = false;
+        std::cout<<"keydown ";
     }
 
     return CallNextHookEx(NULL, ncode, wParam, lParam);
