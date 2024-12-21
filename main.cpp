@@ -7,6 +7,12 @@ LRESULT CALLBACK TST_BTNhookproc(int ncode, WPARAM wParam, LPARAM lParam) {
     if (wParam == WM_KEYDOWN && lParam != NULL)
     {
         std::cout<<"keydown ";
+
+        if (((LPKBDLLHOOKSTRUCT)lParam)->vkCode == 0x4A)
+        {
+            std::cout<<"j ";
+            return 1;
+        }
     }
 
     return CallNextHookEx(NULL, ncode, wParam, lParam);
