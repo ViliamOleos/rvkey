@@ -1,7 +1,13 @@
 # RV Additions
 
+
 # Code::Blocks .layout file
 *.layout 
+
+# no way somebody is reading this
+*.depend
+
+
 
 
 
