@@ -6,7 +6,7 @@ using namespace std;
 LRESULT CALLBACK TST_BTNhookproc(int ncode, WPARAM wParam, LPARAM lParam) {
     if (wParam == WM_KEYDOWN && lParam != NULL)
     {
-        std::cout<<((LPKBDLLHOOKSTRUCT)lParam)->vkCode<<' ';
+        std::cout<<((LPKBDLLHOOKSTRUCT)lParam)->vkCode<<' '; //74
     }
 
     return CallNextHookEx(NULL, ncode, wParam, lParam);
