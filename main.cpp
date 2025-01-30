@@ -1,7 +1,6 @@
-#include <iostream>
 #include <windows.h>
-
-using namespace std;
+#include <iostream>
+#include <cstdio>
 
 LRESULT CALLBACK TST_BTNhookproc(int ncode, WPARAM wParam, LPARAM lParam)
 {
@@ -17,8 +16,13 @@ LRESULT CALLBACK TST_BTNhookproc(int ncode, WPARAM wParam, LPARAM lParam)
 int main()
 {
     HHOOK TST_BTN = SetWindowsHookExW(WH_KEYBOARD_LL, TST_BTNhookproc,  NULL, 0);
+    MSG mesag;
 
-    MessageBoxW(NULL, L"hooking", L"", MB_ICONEXCLAMATION | MB_SYSTEMMODAL); // Dialogue Box duh
+
+    while (GetMessage(&mesag, NULL, 0, 0)) {
+        TranslateMessage(&mesag);
+        DispatchMessage(&mesag);
+    }
 
     UnhookWindowsHookEx(TST_BTN); // baye
 
