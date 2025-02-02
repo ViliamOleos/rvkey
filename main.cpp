@@ -9,9 +9,9 @@ LRESULT CALLBACK TST_BTNhookproc(int ncode, WPARAM wParam, LPARAM lParam)
 
         switch(((LPKBDLLHOOKSTRUCT)lParam)->vkCode) { // switch statement because this one fits nicely
             case 27: // case escape key pressed then
-                PostQuitMessage(0);
-            default:
-                return 1;
+                PostQuitMessage(0); // quit program
+            default: // any other key
+                return 1; // freak up everyone else's work
         }
 
         //return ((LPKBDLLHOOKSTRUCT)lParam)->vkCode==84; // if key = T then never heard of a T being pressed end
