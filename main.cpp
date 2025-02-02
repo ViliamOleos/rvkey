@@ -7,7 +7,14 @@ LRESULT CALLBACK TST_BTNhookproc(int ncode, WPARAM wParam, LPARAM lParam)
     if(wParam == WM_KEYDOWN && lParam != NULL) { // keydown could be problematic, ill change it later
         std::cout<<((LPKBDLLHOOKSTRUCT)lParam)->vkCode<<' '; // T = 84
 
-        return ((LPKBDLLHOOKSTRUCT)lParam)->vkCode==84; // if key = T then never heard of a T being pressed end
+        switch(((LPKBDLLHOOKSTRUCT)lParam)->vkCode) { // switch statement because this one fits nicely
+            case 27: // case escape key pressed then
+                PostQuitMessage(0);
+            default:
+                return 1;
+        }
+
+        //return ((LPKBDLLHOOKSTRUCT)lParam)->vkCode==84; // if key = T then never heard of a T being pressed end
     }
 
     return CallNextHookEx(NULL, ncode, wParam, lParam); // pass the torch
