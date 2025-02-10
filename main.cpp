@@ -5,13 +5,13 @@
 LRESULT CALLBACK TST_BTNhookproc(int ncode, WPARAM wParam, LPARAM lParam)
 {
     if(wParam == WM_KEYDOWN && lParam != NULL) { // keydown could be problematic, ill change it later
-        std::cout<<((LPKBDLLHOOKSTRUCT)lParam)->vkCode<<' '; // T = 84
+        std::cout<<((LPKBDLLHOOKSTRUCT)lParam)->vkCode<<' '; // print pressed keys
 
         switch(((LPKBDLLHOOKSTRUCT)lParam)->vkCode) { // switch statement because this one fits nicely
             case 27: // case escape key pressed then
                 PostQuitMessage(0); // quit program
-            default: // any other key
-                return 1; // freak up everyone else's work
+            case 81: // the q key
+                SendInput(/*finish this*/); // it should simulate the key "replacer"
         }
 
         //return ((LPKBDLLHOOKSTRUCT)lParam)->vkCode==84; // if key = T then never heard of a T being pressed end
@@ -23,8 +23,9 @@ LRESULT CALLBACK TST_BTNhookproc(int ncode, WPARAM wParam, LPARAM lParam)
 int main()
 {
     HHOOK TST_BTN = SetWindowsHookExW(WH_KEYBOARD_LL, TST_BTNhookproc,  NULL, 0);
-    MSG mesag;
+    MSG mesag; char replacer;
 
+    replacer = char(getchar());
 
     while (GetMessage(&mesag, NULL, 0, 0)) {
         TranslateMessage(&mesag);
