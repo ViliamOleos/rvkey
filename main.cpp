@@ -18,11 +18,13 @@ LRESULT CALLBACK TST_BTNhookproc(int ncode, WPARAM wParam, LPARAM lParam)
             case 27: // case escape key pressed then
                 PostQuitMessage(0); // quit program
             case 81: // the q key
-                keytrain[0].type = INPUT_KEYBOARD;
-                keytrain[0].ki.wVk = replacer;
+                keytrain[0].type = INPUT_KEYBOARD; // INPUT is an object oriented thingie
+                keytrain[0].ki.wVk = replacer; // i have no idea what "ki" and "wVk" are supposed to mean but it works
 
-                SendInput(ARRAYSIZE(keytrain), keytrain, sizeof(INPUT)); // it should simulate the key "replacer"
-                return 1;
+                SendInput(ARRAYSIZE(keytrain), keytrain, sizeof(INPUT)); // it should simulate the key [replacer]
+                return 1; // baye
+            case 71: // the g key testing out if gets fired if g key is [replacer]
+                std::cout<<"|71(g)press| "; // yeah it does, kinda a problem. imagine an infinite cycle of buttons :/
         }
 
         //return ((LPKBDLLHOOKSTRUCT)lParam)->vkCode==84; // if key = T then never heard of a T being pressed end
